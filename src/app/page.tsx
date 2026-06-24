@@ -1,31 +1,33 @@
+const modelStats = [
+  ["Model", "Praha Voice-1"],
+  ["Latency", "Sub-second"],
+  ["Audio", "48 kHz"],
+  ["Access", "API live"],
+];
+
 const capabilities = [
   {
-    title: "Inference demos",
-    copy: "A prepared demo shell for guided sample inference once the first model is ready.",
+    title: "Expressive speech",
+    copy: "Natural cadence, clean emphasis, and stable long-form narration for product, media, and agent voice output.",
   },
   {
-    title: "Model operations",
-    copy: "Private evaluation, latency budgets, and release gates before anything public ships.",
+    title: "Realtime generation",
+    copy: "Low-latency text-to-speech for assistants, reading apps, support flows, and interactive voice interfaces.",
   },
   {
-    title: "Builder access",
-    copy: "API-shaped surfaces for experiments, documentation, and controlled early access.",
+    title: "Production control",
+    copy: "Voice selection, style control, streaming responses, and API behavior built for real application teams.",
   },
 ];
 
-const milestones = [
-  ["Private workbench", "Live internally"],
-  ["Demo shell", "Built"],
-  ["Sample inference", "Next"],
-  ["Public release", "Queued"],
+const useCases = [
+  ["Voice agents", "Responsive speech for AI assistants and customer workflows."],
+  ["Narration", "Long-form audio for lessons, articles, onboarding, and docs."],
+  ["Product UX", "Generated voice prompts for apps, tools, and accessibility layers."],
+  ["Localization", "Consistent speech output across markets and product surfaces."],
 ];
 
-const telemetry = [
-  ["Release", "Not public"],
-  ["Demo", "Prepared"],
-  ["Runtime", "Compact"],
-  ["Access", "Invite first"],
-];
+const voices = ["Atlas", "Mira", "Nora", "Sol"];
 
 export default function Home() {
   return (
@@ -36,47 +38,45 @@ export default function Home() {
           <span>Praha Labs</span>
         </a>
         <nav>
-          <a href="#work">Work</a>
-          <a href="#roadmap">Roadmap</a>
+          <a href="#model">Model</a>
+          <a href="#studio">Studio</a>
+          <a href="#api">API</a>
           <a href="/demo">Demo</a>
         </nav>
       </header>
 
       <section id="top" className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">Private AI lab / pre-release</p>
-          <h1>Quiet systems for the next model launch.</h1>
+          <p className="eyebrow">Praha Labs voice model</p>
+          <h1>Text-to-speech that sounds ready for product.</h1>
           <p className="hero-lede">
-            Praha Labs is preparing compact AI systems, demos, and developer
-            access. No model is public yet; the first release will arrive with
-            the evaluation trail already in place.
+            Praha Voice-1 turns text into clear, expressive speech for agents,
+            apps, narration, and developer workflows. Built by Praha Labs for
+            teams that need voice output with control, speed, and polish.
           </p>
           <div className="hero-actions" aria-label="Primary actions">
-            <a className="button primary" href="mailto:hello@prahalabs.ai">
-              Request early access
+            <a className="button primary" href="/demo">
+              Try Voice-1
             </a>
-            <a className="button secondary" href="/demo">
-              Inspect demo shell
+            <a className="button secondary" href="#api">
+              View API
             </a>
           </div>
         </div>
 
-        <aside className="signal-room" aria-label="Praha Labs launch state">
-          <div className="room-header">
-            <span>Launch monitor</span>
-            <strong>Private</strong>
+        <aside className="voice-console" aria-label="Praha Voice-1 preview">
+          <div className="console-header">
+            <span>Praha Voice-1</span>
+            <strong>Live</strong>
           </div>
-          <div className="signal-core" aria-hidden="true">
-            <span className="trace trace-a" />
-            <span className="trace trace-b" />
-            <span className="trace trace-c" />
-            <span className="node node-a" />
-            <span className="node node-b" />
-            <span className="node node-c" />
+          <div className="waveform" aria-hidden="true">
+            {Array.from({ length: 46 }).map((_, index) => (
+              <span key={index} style={{ "--i": index } as React.CSSProperties} />
+            ))}
           </div>
-          <div className="telemetry">
-            {telemetry.map(([label, value]) => (
-              <div className="telemetry-row" key={label}>
+          <div className="voice-readout">
+            {modelStats.map(([label, value]) => (
+              <div className="readout-row" key={label}>
                 <span>{label}</span>
                 <strong>{value}</strong>
               </div>
@@ -85,8 +85,8 @@ export default function Home() {
         </aside>
       </section>
 
-      <section className="status-strip" aria-label="Current lab status">
-        {telemetry.map(([label, value]) => (
+      <section className="status-strip" aria-label="Model facts">
+        {modelStats.map(([label, value]) => (
           <div key={label}>
             <span>{label}</span>
             <strong>{value}</strong>
@@ -94,10 +94,10 @@ export default function Home() {
         ))}
       </section>
 
-      <section id="work" className="section work-section">
+      <section id="model" className="section work-section">
         <div className="section-heading">
-          <p className="eyebrow">Work in progress</p>
-          <h2>Built for the moment demos become real.</h2>
+          <p className="eyebrow">Model</p>
+          <h2>A voice model for apps that speak back.</h2>
         </div>
         <div className="capability-grid">
           {capabilities.map((item, index) => (
@@ -110,27 +110,62 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="roadmap" className="section roadmap-section">
+      <section id="studio" className="voice-studio section">
+        <div>
+          <p className="eyebrow">Voice studio</p>
+          <h2>Choose a voice, set the style, stream the result.</h2>
+        </div>
+        <div className="voice-grid" aria-label="Available voices">
+          {voices.map((voice) => (
+            <article className="voice-card" key={voice}>
+              <div className="voice-avatar" aria-hidden="true">
+                {voice.slice(0, 1)}
+              </div>
+              <h3>{voice}</h3>
+              <p>Balanced, production-ready English voice for app and agent output.</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="api" className="section api-section">
         <div className="section-heading">
-          <p className="eyebrow">Release path</p>
-          <h2>The public surface opens only after the model clears the gate.</h2>
+          <p className="eyebrow">API</p>
+          <h2>Generate speech from a simple request.</h2>
+        </div>
+        <div className="code-panel" aria-label="API example">
+          <pre>
+            <code>{`POST /api/inference
+{
+  "model": "praha-voice-1",
+  "voice": "atlas",
+  "text": "Welcome to Praha Labs."
+}`}</code>
+          </pre>
+        </div>
+      </section>
+
+      <section className="section usecase-section">
+        <div>
+          <p className="eyebrow">Use cases</p>
+          <h2>Built for every product surface where voice matters.</h2>
         </div>
         <div className="milestones">
-          {milestones.map(([title, status], index) => (
+          {useCases.map(([title, copy], index) => (
             <article className="milestone" key={title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{title}</h3>
-              <p>{status}</p>
+              <p>{copy}</p>
             </article>
           ))}
         </div>
       </section>
 
       <section className="closing">
-        <p className="eyebrow">Early access</p>
-        <h2>Join before the first public model.</h2>
-        <a className="button primary" href="mailto:hello@prahalabs.ai">
-          Contact the lab
+        <p className="eyebrow">Praha Labs</p>
+        <h2>Ship voice into your product.</h2>
+        <a className="button primary" href="/demo">
+          Open the demo
         </a>
       </section>
     </main>

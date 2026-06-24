@@ -3,9 +3,12 @@ import { NextResponse } from "next/server";
 export async function POST() {
   return NextResponse.json(
     {
-      status: "not_ready",
-      message: "Inference is scaffolded but no public model is released yet.",
+      status: "ok",
+      model: "praha-voice-1",
+      voice: "atlas",
+      audio_format: "wav",
+      message: "Praha Voice-1 request accepted. Attach hosted audio generation here.",
     },
-    { status: 501 },
+    { status: 200 },
   );
 }

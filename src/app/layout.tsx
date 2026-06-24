@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Praha Labs | Applied AI Research",
+  title: "Praha Labs | Praha Voice-1 TTS",
   description:
-    "Praha Labs is a working-name AI lab building private, precise, and production-minded model systems. Models are not released yet.",
+    "Praha Labs builds applied AI models, including Praha Voice-1, a text-to-speech model for product teams and developers.",
   icons: {
     icon: "/favicon.svg",
   },

@@ -81,12 +81,13 @@ main {
 nav,
 .button,
 .eyebrow,
-.room-header,
-.telemetry-row,
+.console-header,
+.readout-row,
 .status-strip,
 .capability > span,
 .milestone > span,
-.milestone p {
+.milestone p,
+.demo-composer label {
   font-family: "DIN Alternate", "Avenir Next", sans-serif;
 }
 
@@ -147,7 +148,7 @@ nav a:hover {
 }
 
 .hero-copy {
-  max-width: 680px;
+  max-width: 700px;
 }
 
 .eyebrow {
@@ -174,10 +175,10 @@ h2 {
 
 h1 {
   color: var(--bone);
-  font-size: clamp(3.8rem, 7vw, 7.6rem);
+  font-size: clamp(3.6rem, 6.7vw, 7.1rem);
   font-weight: 700;
   margin-bottom: 28px;
-  max-width: 10.5ch;
+  max-width: 10.8ch;
 }
 
 h2 {
@@ -201,7 +202,7 @@ h3 {
   font-size: clamp(1.06rem, 1.28vw, 1.2rem);
   line-height: 1.45;
   margin-bottom: 34px;
-  max-width: 60ch;
+  max-width: 62ch;
 }
 
 .hero-actions {
@@ -243,7 +244,7 @@ h3 {
   color: var(--ink);
 }
 
-.signal-room {
+.voice-console {
   background:
     linear-gradient(145deg, rgba(248, 241, 223, 0.045), transparent 42%),
     var(--panel);
@@ -254,18 +255,18 @@ h3 {
   position: relative;
 }
 
-.signal-room::after {
-  background: linear-gradient(90deg, transparent, rgba(217, 255, 74, 0.16), transparent);
+.voice-console::after {
+  background: linear-gradient(90deg, transparent, rgba(217, 255, 74, 0.22), transparent);
   content: "";
   height: 1px;
   left: -30%;
   position: absolute;
   right: -30%;
-  top: 50%;
-  transform: rotate(-18deg);
+  top: 46%;
+  transform: rotate(-13deg);
 }
 
-.room-header {
+.console-header {
   align-items: center;
   border-bottom: 1px solid var(--line);
   display: flex;
@@ -279,70 +280,69 @@ h3 {
   z-index: 2;
 }
 
-.room-header strong {
+.console-header strong {
   color: var(--acid);
 }
 
-.signal-core {
+.waveform {
+  align-items: center;
+  display: flex;
+  gap: 7px;
   height: 365px;
+  justify-content: center;
+  padding: 0 42px;
   position: relative;
 }
 
-.trace {
-  border: 1px solid rgba(248, 241, 223, 0.14);
-  border-radius: 999px;
+.waveform::before,
+.waveform::after {
+  border: 1px solid rgba(248, 241, 223, 0.13);
+  border-radius: 50%;
+  content: "";
+  height: 260px;
   left: 50%;
   position: absolute;
-  top: 53%;
+  top: 52%;
   transform: translate(-50%, -50%);
+  width: 260px;
 }
 
-.trace-a {
-  height: 280px;
-  width: 280px;
-}
-
-.trace-b {
-  height: 196px;
-  width: 430px;
-}
-
-.trace-c {
+.waveform::after {
   height: 360px;
-  width: 520px;
+  opacity: 0.72;
+  width: 480px;
 }
 
-.node {
-  border-radius: 50%;
-  position: absolute;
+.waveform span {
+  background: linear-gradient(180deg, var(--acid), rgba(216, 111, 69, 0.78));
+  height: 72px;
+  opacity: 0.82;
+  position: relative;
+  width: 7px;
+  z-index: 2;
 }
 
-.node-a {
-  background: var(--acid);
-  box-shadow: 0 0 28px rgba(217, 255, 74, 0.55);
-  height: 14px;
-  left: 52%;
-  top: 19%;
-  width: 14px;
+.waveform span:nth-child(2n) {
+  height: 118px;
 }
 
-.node-b {
-  background: var(--bone);
-  height: 9px;
-  left: 28%;
-  top: 36%;
-  width: 9px;
+.waveform span:nth-child(3n) {
+  height: 154px;
 }
 
-.node-c {
-  background: var(--copper);
-  height: 10px;
-  right: 22%;
-  top: 67%;
-  width: 10px;
+.waveform span:nth-child(4n) {
+  opacity: 0.48;
 }
 
-.telemetry {
+.waveform span:nth-child(5n) {
+  height: 196px;
+}
+
+.waveform span:nth-child(7n) {
+  height: 42px;
+}
+
+.voice-readout {
   border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -350,7 +350,7 @@ h3 {
   z-index: 2;
 }
 
-.telemetry-row {
+.readout-row {
   border-bottom: 1px solid var(--line);
   color: var(--quiet);
   display: grid;
@@ -360,11 +360,11 @@ h3 {
   text-transform: uppercase;
 }
 
-.telemetry-row:nth-child(odd) {
+.readout-row:nth-child(odd) {
   border-right: 1px solid var(--line);
 }
 
-.telemetry-row strong {
+.readout-row strong {
   color: var(--bone);
   font-size: 1rem;
   text-transform: none;
@@ -406,7 +406,9 @@ h3 {
 }
 
 .work-section,
-.roadmap-section {
+.api-section,
+.usecase-section,
+.voice-studio {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 56px;
@@ -418,12 +420,14 @@ h3 {
   top: 112px;
 }
 
-.capability-grid {
+.capability-grid,
+.voice-grid {
   display: grid;
   gap: 14px;
 }
 
-.capability {
+.capability,
+.voice-card {
   background: rgba(248, 241, 223, 0.045);
   border: 1px solid var(--line);
   min-height: 178px;
@@ -434,7 +438,8 @@ h3 {
     transform 170ms ease;
 }
 
-.capability:hover {
+.capability:hover,
+.voice-card:hover {
   background: rgba(248, 241, 223, 0.07);
   border-color: var(--line-strong);
   transform: translateY(-3px);
@@ -453,10 +458,52 @@ h3 {
 
 .capability p,
 .milestone p,
-.demo-shell p {
+.voice-card p,
+.demo-shell p,
+.sample-stack p {
   color: var(--muted);
   margin-bottom: 0;
   max-width: 62ch;
+}
+
+.voice-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.voice-card {
+  min-height: 210px;
+}
+
+.voice-avatar {
+  align-items: center;
+  background: var(--acid);
+  color: #11100d;
+  display: flex;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  margin-bottom: 34px;
+  width: 42px;
+}
+
+.code-panel {
+  background: #080807;
+  border: 1px solid var(--line);
+  box-shadow: 0 28px 80px var(--shadow);
+  overflow: auto;
+  padding: 28px;
+}
+
+.code-panel pre {
+  margin: 0;
+}
+
+.code-panel code {
+  color: var(--bone);
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  line-height: 1.65;
+  white-space: pre-wrap;
 }
 
 .milestones {
@@ -468,8 +515,8 @@ h3 {
   border-bottom: 1px solid var(--line);
   display: grid;
   gap: 22px;
-  grid-template-columns: 72px 1fr 150px;
-  min-height: 96px;
+  grid-template-columns: 72px 1fr 1.35fr;
+  min-height: 104px;
 }
 
 .milestone > span {
@@ -481,11 +528,8 @@ h3 {
 }
 
 .milestone p {
-  color: var(--acid);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 0.96rem;
+  line-height: 1.42;
 }
 
 .closing {
@@ -516,24 +560,73 @@ h3 {
   background: var(--panel);
   border: 1px solid var(--line);
   margin: 0 auto;
-  max-width: 760px;
+  max-width: 880px;
   padding: 42px;
+  width: 100%;
 }
 
 .demo-shell h1 {
   color: var(--bone);
-  font-size: clamp(3rem, 9vw, 6.5rem);
-  max-width: 9ch;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  max-width: 10ch;
 }
 
-.demo-shell .button {
-  margin-top: 30px;
+.demo-composer {
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+  padding: 20px;
+}
+
+.demo-composer label {
+  color: var(--copper);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+textarea {
+  background: rgba(248, 241, 223, 0.04);
+  border: 1px solid var(--line);
+  color: var(--bone);
+  font: inherit;
+  line-height: 1.45;
+  min-height: 150px;
+  padding: 16px;
+  resize: vertical;
+  width: 100%;
+}
+
+textarea:focus {
+  border-color: var(--acid);
+  outline: 2px solid rgba(217, 255, 74, 0.2);
+}
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sample-stack {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.sample-stack p {
+  border: 1px solid var(--line);
+  padding: 14px 16px;
 }
 
 @media (max-width: 960px) {
   .hero,
   .work-section,
-  .roadmap-section,
+  .api-section,
+  .usecase-section,
+  .voice-studio,
   .closing {
     grid-template-columns: 1fr;
   }
@@ -546,7 +639,7 @@ h3 {
     position: static;
   }
 
-  .signal-room {
+  .voice-console {
     min-height: 560px;
   }
 
@@ -585,11 +678,11 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(3.15rem, 14vw, 4.3rem);
+    font-size: clamp(3rem, 13vw, 4.2rem);
   }
 
   h2 {
-    font-size: clamp(2.35rem, 11vw, 3.6rem);
+    font-size: clamp(2.3rem, 10vw, 3.5rem);
   }
 
   .hero-lede {
@@ -597,7 +690,8 @@ h3 {
   }
 
   .hero-actions,
-  .closing {
+  .closing,
+  .demo-controls {
     display: flex;
     flex-direction: column;
   }
@@ -606,35 +700,37 @@ h3 {
     width: 100%;
   }
 
-  .signal-room {
+  .voice-console {
     min-height: 520px;
   }
 
-  .signal-core {
-    height: 330px;
+  .waveform {
+    gap: 4px;
+    height: 320px;
+    padding: 0 18px;
   }
 
-  .trace-a {
+  .waveform span {
+    width: 4px;
+  }
+
+  .waveform::before {
     height: 210px;
     width: 210px;
   }
 
-  .trace-b {
-    height: 160px;
-    width: 320px;
+  .waveform::after {
+    height: 280px;
+    width: 360px;
   }
 
-  .trace-c {
-    height: 290px;
-    width: 370px;
-  }
-
-  .telemetry,
-  .status-strip {
+  .voice-readout,
+  .status-strip,
+  .voice-grid {
     grid-template-columns: 1fr;
   }
 
-  .telemetry-row:nth-child(odd),
+  .readout-row:nth-child(odd),
   .status-strip div {
     border-right: 0;
   }
@@ -653,6 +749,10 @@ h3 {
 
   .capability > span {
     margin-bottom: 22px;
+  }
+
+  .demo-page {
+    padding: 18px;
   }
 
   .demo-shell {
