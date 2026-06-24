@@ -1,30 +1,30 @@
 const capabilities = [
   {
-    title: "Small model runtime",
-    copy: "Compact inference targets for demos, internal agents, and production endpoints.",
+    title: "Inference demos",
+    copy: "A prepared demo shell for guided sample inference once the first model is ready.",
   },
   {
-    title: "Evaluation loop",
-    copy: "Private harnesses for latency, quality, failure modes, and release readiness.",
+    title: "Model operations",
+    copy: "Private evaluation, latency budgets, and release gates before anything public ships.",
   },
   {
-    title: "Developer surface",
-    copy: "A clean demo route now, API-backed sample inference when the first model is ready.",
+    title: "Builder access",
+    copy: "API-shaped surfaces for experiments, documentation, and controlled early access.",
   },
 ];
 
 const milestones = [
-  ["01", "Private model workbench", "Active"],
-  ["02", "Sample inference demo", "Next"],
-  ["03", "Public model card", "Queued"],
-  ["04", "API access", "Queued"],
+  ["Private workbench", "Live internally"],
+  ["Demo shell", "Built"],
+  ["Sample inference", "Next"],
+  ["Public release", "Queued"],
 ];
 
-const consoleRows = [
-  ["route", "/api/inference"],
-  ["model", "private-preview"],
-  ["state", "not released"],
-  ["latency target", "real-time"],
+const telemetry = [
+  ["Release", "Not public"],
+  ["Demo", "Prepared"],
+  ["Runtime", "Compact"],
+  ["Access", "Invite first"],
 ];
 
 export default function Home() {
@@ -32,9 +32,7 @@ export default function Home() {
     <main>
       <header className="site-header" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="Praha Labs home">
-          <span className="brand-mark" aria-hidden="true">
-            P
-          </span>
+          <span className="brand-mark" aria-hidden="true" />
           <span>Praha Labs</span>
         </a>
         <nav>
@@ -46,59 +44,65 @@ export default function Home() {
 
       <section id="top" className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">Working name / private lab</p>
-          <h1>Applied AI systems, released when ready.</h1>
+          <p className="eyebrow">Private AI lab / pre-release</p>
+          <h1>Quiet systems for the next model launch.</h1>
           <p className="hero-lede">
-            Praha Labs is preparing compact model systems, inference demos, and
-            developer tools. No public model is released yet; the site is ready
-            for the launch path.
+            Praha Labs is preparing compact AI systems, demos, and developer
+            access. No model is public yet; the first release will arrive with
+            the evaluation trail already in place.
           </p>
           <div className="hero-actions" aria-label="Primary actions">
             <a className="button primary" href="mailto:hello@prahalabs.ai">
               Request early access
             </a>
             <a className="button secondary" href="/demo">
-              Open demo shell
+              Inspect demo shell
             </a>
           </div>
         </div>
 
-        <div className="product-visual" aria-label="Praha Labs inference preview">
-          <div className="visual-toolbar">
-            <span>praha://preview</span>
-            <span>Private</span>
+        <aside className="signal-room" aria-label="Praha Labs launch state">
+          <div className="room-header">
+            <span>Launch monitor</span>
+            <strong>Private</strong>
           </div>
-          <div className="visual-grid">
-            <div className="orbit" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="console-card">
-              <p>Inference endpoint</p>
-              {consoleRows.map(([key, value]) => (
-                <div className="console-row" key={key}>
-                  <span>{key}</span>
-                  <strong>{value}</strong>
-                </div>
-              ))}
-            </div>
+          <div className="signal-core" aria-hidden="true">
+            <span className="trace trace-a" />
+            <span className="trace trace-b" />
+            <span className="trace trace-c" />
+            <span className="node node-a" />
+            <span className="node node-b" />
+            <span className="node node-c" />
           </div>
-          <div className="visual-footer">
-            <span>Release gate</span>
-            <strong>Awaiting public model</strong>
+          <div className="telemetry">
+            {telemetry.map(([label, value]) => (
+              <div className="telemetry-row" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+              </div>
+            ))}
           </div>
-        </div>
+        </aside>
+      </section>
+
+      <section className="status-strip" aria-label="Current lab status">
+        {telemetry.map(([label, value]) => (
+          <div key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
       </section>
 
       <section id="work" className="section work-section">
-        <div className="section-kicker">
-          <p className="eyebrow">What is being built</p>
-          <h2>A launch surface for models, demos, and developer access.</h2>
+        <div className="section-heading">
+          <p className="eyebrow">Work in progress</p>
+          <h2>Built for the moment demos become real.</h2>
         </div>
         <div className="capability-grid">
-          {capabilities.map((item) => (
+          {capabilities.map((item, index) => (
             <article className="capability" key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{item.title}</h3>
               <p>{item.copy}</p>
             </article>
@@ -106,22 +110,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="statement-band" aria-label="Lab thesis">
-        <p>
-          Small models. Clear interfaces. Release only when behavior, latency,
-          and failure modes are understood.
-        </p>
-      </section>
-
       <section id="roadmap" className="section roadmap-section">
-        <div>
+        <div className="section-heading">
           <p className="eyebrow">Release path</p>
-          <h2>Built now for the demos that come next.</h2>
+          <h2>The public surface opens only after the model clears the gate.</h2>
         </div>
         <div className="milestones">
-          {milestones.map(([number, title, status]) => (
+          {milestones.map(([title, status], index) => (
             <article className="milestone" key={title}>
-              <span>{number}</span>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{title}</h3>
               <p>{status}</p>
             </article>
@@ -129,11 +126,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="cta-section">
-        <div>
-          <p className="eyebrow">Early access</p>
-          <h2>Want to see the first demo when it is live?</h2>
-        </div>
+      <section className="closing">
+        <p className="eyebrow">Early access</p>
+        <h2>Join before the first public model.</h2>
         <a className="button primary" href="mailto:hello@prahalabs.ai">
           Contact the lab
         </a>
