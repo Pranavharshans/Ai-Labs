@@ -70,7 +70,7 @@ export default function Home() {
           <a href="#lab">Lab</a>
           <a href="#domains">Research</a>
           <a href="#rimats">RimaTTS</a>
-          <a href="/demo">Demo</a>
+          <a href="/demo">Samples</a>
         </nav>
       </header>
 
@@ -193,7 +193,7 @@ export default function Home() {
                 </div>
                 <div>
                   <dt>Access</dt>
-                  <dd>Live demo</dd>
+                  <dd>Samples pending</dd>
                 </div>
               </dl>
 
@@ -208,8 +208,8 @@ export default function Home() {
 
               <a className="release-action" href="/demo">
                 <span>
-                  <small>Interactive inference</small>
-                  Try RimaTTS
+                  <small>Release 001</small>
+                  View RimaTTS
                 </span>
                 <ArrowRight aria-hidden="true" size={22} />
               </a>
@@ -263,7 +263,7 @@ export default function Home() {
         </a>
         <p>Beyond Artificial. Toward Intelligence.</p>
         <div>
-          <a href="/demo">RimaTTS demo</a>
+          <a href="/demo">RimaTTS</a>
           <a href="mailto:hello@prahalabs.ai">Email</a>
         </div>
       </footer>

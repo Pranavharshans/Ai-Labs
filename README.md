@@ -1,6 +1,6 @@
 # Ai-Labs
 
-Next.js website for Praha Lab and the interactive RimaTTS V1 demo.
+Next.js website for Praha Lab and the RimaTTS V1 release page.
 
 ## Development
 
